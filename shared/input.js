@@ -1,5 +1,5 @@
 const fs = require('fs');
 
-module.exports = function() {
-    return fs.readFileSync('input.txt', 'utf-8');
+module.exports = function(dir) {
+    return fs.readFileSync(dir + '/input.txt', 'utf-8');
 }
