@@ -2,7 +2,7 @@ let input = require('./data');
 
 let state = `...${input.state}...`;
 let zeroIndex = 3;
-const generations = 20;
+const generations = 200; // after 140 ish it becomes linear
 console.log(`${state} - 0`);
 
 function indexesOf(s, pattern) {
@@ -31,7 +31,11 @@ function sumPlants(s) {
     return sum;
 }
 
+let prevSum = 0;
+let sum = 0;
 for (let g = 1; g <= generations; g++) {
+    prevSum = sumPlants(state);
+
     let newState = state;
     input.notes.forEach((note) => {
         indexesOf(state, note.pattern).forEach((i) => {
@@ -46,6 +50,9 @@ for (let g = 1; g <= generations; g++) {
     if (state.indexOf('#', state.length - 3) != -1) {
         state = state + '.';
     }
-    // console.log(`${state} - ${g}`)
+    sum = sumPlants(state);
 }
-console.log(`We had ${sumPlants(state)} plants`)
+
+let pots = sum + (50000000000 - generations) * (sum-prevSum);
+
+console.log(`My pots are maybe ${pots}`);

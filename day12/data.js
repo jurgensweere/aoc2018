@@ -1,5 +1,9 @@
 let input = require('../shared/input')(__dirname)
     .split('\n');
+let test = require('../shared/test')(__dirname)
+    .split('\n');
+
+// input = test;
 
 let initialState = /[\.\#]+/.exec(input[0])[0];
 // initialState = initialState.replace(/#/g, '1')
