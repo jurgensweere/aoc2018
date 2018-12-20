@@ -1,4 +1,5 @@
 const input = 9995;
+//const input = 18;
 
 // make the grid
 let grid = Array(300).fill().map(() => Array(300).fill(0));
@@ -26,17 +27,25 @@ for (let x = 1; x <= grid.length; x++) {
 // find
 let largestPower = 0;
 let winningcell = [];
-for (let x = 1; x <= grid.length - 2; x++) {
-    for (let y = 1; y <= grid[x-1].length - 2; y++) {
-        // calculate 3x3
-        let power = grid[x-1][y-1] + grid[x][y-1] + grid[x+1][y-1] +
-                    grid[x-1][y]   + grid[x][y]   + grid[x+1][y] +
-                    grid[x-1][y+1] + grid[x][y+1] + grid[x+1][y+1];
-        if (power > largestPower) {
-            largestPower = power;
-            winningcell = [x,y];
+let winningsize = 1;
+for (let s = 1; s <= 300; s++) {
+    for (let x = 1; x < grid.length - s; x++) {
+        for (let y = 1; y < grid[x-1].length - s; y++) {
+            // calculate s x s
+
+            let power = 0;
+            for(let px = x - 1; px < x - 1 + s; px++) {
+                for(let py = y - 1; py < y - 1 + s; py++) {
+                    power += grid[px][py];
+                }
+            }
+
+            if (power > largestPower) {
+                largestPower = power;
+                winningcell = [x,y];
+                winningsize = s;
+            }
         }
     }
 }
-
-console.log(`largest power is at ${winningcell[0]},${winningcell[1]}`);
+console.log(`largest power is at ${winningcell[0]},${winningcell[1]},${winningsize}`);
