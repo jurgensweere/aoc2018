@@ -49,11 +49,11 @@ grid.forEach((l, y) => {
 
 function sortCarts() {
     carts.sort((a, b) => {
-        if (a.y < b.y) { return 1; }
-        else if (a.y > b.y) { return -1;} 
+        if (a.y > b.y) { return 1; }
+        else if (a.y < b.y) { return -1;} 
         else {
-            if (a.x < b.x) { return 1; }
-            else if (a.x > b.x) { return -1;}
+            if (a.x > b.x) { return 1; }
+            else if (a.x < b.x) { return -1;}
             else { return 0; }
         }
     });
@@ -137,7 +137,7 @@ while (!crashed) {
         }
     }
     
-    printGrid(tick);
+    // printGrid(tick);
     tick++;
 }
 
